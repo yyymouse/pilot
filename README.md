@@ -1,5 +1,4 @@
-# 这是基于yuelu2022/2023 EC basic_framework-dev
-进行二次开发的项目
+# 这是基于yuelu2022/2023 EC basic_framework-dev进行二次开发的项目
 
 
 
