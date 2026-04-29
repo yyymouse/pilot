@@ -1,3 +1,7 @@
+# 这是基于yuelu2022/2023 EC basic_framework-dev进行二次开发的项目
+
+
+
 # YueLu2022/2023 EC basic_framework-dev
 
 湖南大学RoboMaster跃鹿战队2022-2023电控通用嵌入式框架。
