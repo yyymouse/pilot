@@ -8,14 +8,18 @@
 
 #define DM_MOTOR_CNT 4
 
-#define DM_P_MIN  (-12.5f)
-#define DM_P_MAX  12.5f
-#define DM_V_MIN  (-45.0f)
-#define DM_V_MAX  45.0f
-#define DM_T_MIN  (-18.0f)
-#define DM_T_MAX   18.0f
+#define DM_P_MIN  (-12.5664)
+#define DM_P_MAX  (12.5664)
+#define DM_V_MIN  (-10.0f)
+#define DM_V_MAX  10.0f
+#define DM_T_MIN  (-28.0f)
+#define DM_T_MAX   28.0f
+#define DM_KP_MIN  0.0
+#define DM_KP_MAX  500.0
+#define DM_KD_MIN  0.0
+#define DM_KD_MAX  5.0
 
-typedef struct 
+typedef struct
 {
     uint8_t id;
     uint8_t state;
@@ -25,6 +29,10 @@ typedef struct
     float torque;
     float T_Mos;
     float T_Rotor;
+    float total_angle;
+
+    float last_raw_angle;
+    float raw_angle;
     int32_t total_round;
 }DM_Motor_Measure_s;
 
@@ -36,18 +44,12 @@ typedef struct
     uint16_t Kp;
     uint16_t Kd;
 }DMMotor_Send_s;
-typedef struct 
+
+typedef struct
 {
     DM_Motor_Measure_s measure;
     Motor_Control_Setting_s motor_settings;
-    PIDInstance current_PID;
-    PIDInstance speed_PID;
-    PIDInstance angle_PID;
-    float *other_angle_feedback_ptr;
-    float *other_speed_feedback_ptr;
-    float *speed_feedforward_ptr;
-    float *current_feedforward_ptr;
-    float pid_ref;
+    Motor_Controller_s motor_controller;
     Motor_Working_Type_e stop_flag;
     CANInstance *motor_can_instace;
     DaemonInstance* motor_daemon;
@@ -63,6 +65,8 @@ typedef enum
 }DMMotor_Mode_e;
 
 DMMotorInstance *DMMotorInit(Motor_Init_Config_s *config);
+
+void DMMotorChangeFeed(DMMotorInstance *motor, Closeloop_Type_e loop_type, Feedback_Source_e feed_source);
 
 void DMMotorSetRef(DMMotorInstance *motor, float ref);
 
