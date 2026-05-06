@@ -350,3 +350,5 @@ ST官方现在将HAL放入github维护。想要获取最新的支持，可以自
 ## lc_basic_update_list
 ### commit1
 更新了DM4310电机库
+### commit2
+修复了dm4310无法链接的问题

@@ -45,8 +45,8 @@ typedef enum
 /* 反馈来源设定,若设为OTHER_FEED则需要指定数据来源指针,详见Motor_Controller_s*/
 typedef enum
 {
-    MOTOR_FEED = 0,
-    OTHER_FEED,
+    MOTOR_FEED = 0,//电机自身反馈数据
+    OTHER_FEED,//额外的位置反馈来源
 } Feedback_Source_e;
 
 /* 电机正反转标志 */
@@ -106,6 +106,7 @@ typedef enum
     M2006,
     LK9025,
     HT04,
+    DM4310,
 } Motor_Type_e;
 
 /**
